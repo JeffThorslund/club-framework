@@ -1,0 +1,11 @@
+#parent{
+    display: grid;
+    grid-template-columns: repeat(7, 10vw);
+    grid-template-rows: repeat(7, 10vh);
+    grid-auto-flow: row;
+}
+
+#void-cell{
+    background-color: grey;
+}
+
