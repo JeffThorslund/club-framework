@@ -1,7 +1,8 @@
 import React from 'react'
 import LeaderPopup from './LeaderPopup'
 
-import { FaRegCheckCircle, FaRegCircle  } from 'react-icons/fa';
+
+import { FaRegCheckCircle, FaRegCircle } from 'react-icons/fa';
 import { AiOutlineUserAdd } from "react-icons/ai";
 
 class ItemForm extends React.Component {
@@ -13,25 +14,30 @@ class ItemForm extends React.Component {
             showPop: false
         }
     }
+
     //includes checkbox, item name, leader assignment 
     //style={{textDecoration:this.state.checked?'text-decoration':'block'}}
 
-    handleLeaderSelect=(leader)=>{
+    handleLeaderSelect = (leader) => {
         this.setState({
             taskedLeaders: leader
         })
     }
 
-    handleToggle=()=>{
-        this.setState(prevState=>({
-            showPop : !prevState.showPop
+    handleToggle = () => {
+        this.setState(prevState => ({
+            showPop: !prevState.showPop
         }))
     }
 
     handleCheckedToggle = () => {
-        this.setState(prevState=>({
+        this.setState(prevState => ({
             checked: !prevState.checked
         }))
+    }
+
+    handleDelete = (e) => {
+
     }
 
     render() {
@@ -39,40 +45,39 @@ class ItemForm extends React.Component {
             <div>
                 <div className='container border p-3'>
                     <div className='row'>
-
                         <div className='col-1' onClick={this.handleCheckedToggle}>
-
-                        <FaRegCheckCircle
+                            <FaRegCheckCircle
                                 style={{ display: this.state.checked ? 'block' : 'none' }}
                             />
-                        
                             <FaRegCircle
                                 style={{ display: !this.state.checked ? 'block' : 'none' }}
                             />
-
-                          
                         </div>
 
-                        <div className='col-9' style={{ textDecoration: this.state.checked ? "line-through" : "none" }}>
+                        <div className='col-8' style={{ textDecoration: this.state.checked ? "line-through" : "none" }}>
                             {this.props.content}
                         </div>
 
                         <div className='col-1'>
-                           
-
-                            <div className='align-middle' onClick = {this.handleToggle}>
+                            <div className='align-middle' onClick={this.handleToggle}>
                                 <AiOutlineUserAdd />
                             </div>
+                        </div>
 
+                        <div className='col-1'>
+                            <div className='align-middle' onClick={this.handleDelete}>
+                                
+                            </div>
                         </div>
 
                         <div>
                             {this.state.taskedLeaders}
                         </div>
 
-                        <LeaderPopup 
-                        selection = {this.handleLeaderSelect} toggle = {this.state.showPop} closeMenu={this.handleToggle}/>
+                        <LeaderPopup
+                            selection={this.handleLeaderSelect} toggle={this.state.showPop} closeMenu={this.handleToggle} />
 
+                        
                     </div>
                 </div>
             </div>

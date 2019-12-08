@@ -1,83 +1,71 @@
-import React from 'react'
-import './LeaderCard.css'
-import { FaTimes } from 'react-icons/fa'
+import React from "react";
 
-class LeaderCard extends React.Component{
+class LeaderCard extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-    constructor(props){
-        super(props)
+  //Accepts the deleteLeader method from Leader.js
+  deleteLeader = e => {
+    this.props.deleteLeader(e);
+  };
+
+  //builds an arr into a list
+  listBuilder = arr => {
+    let finalArr = [];
+    for (let item in arr) {
+      finalArr.push(<li>{arr[item]}</li>);
     }
+    return finalArr;
+  };
 
-    deleteLeader=(e)=>{
-        this.props.deleteLeader(e)
-    }
+  render() {
+    return (
+      <div className="card mt-2" id='leader-card-wrapper' key={this.props.id}>
+        <div className="card-body" >
+          <div className="container">
+            <div className="row">
+              <div className="col-3" id="name-position">
+                <h3>{this.props.leaders[0]}</h3> {/*Displays fullName*/}
+                <h4>{this.props.leaders[1]}</h4>
+              </div>
 
-    render(){
+              <div className="col-3" id="certifications">
+                <div>Certifications</div>
+                <ul>{this.listBuilder(this.props.leaders[2])}</ul>
+              </div>
 
-        //build certification list
-        let certArr = []
+              <div className="col-3" id="roles">
+                <div>Roles and Responsibilites</div>
+                <ul>{this.listBuilder(this.props.leaders[3])}</ul>
+              </div>
 
+              <div className="col-3" id="contact">
+                <div>Contact Info</div>
+                <ul>{this.listBuilder(this.props.leaders[4])}</ul>
+              </div>
 
-
-        for (let i = 3; i < 6; i++) {
-            if (this.props.leaders[i].length > 0) {
-                certArr.push(
-                    <li>
-                        {this.props.leaders[i]}
-                    </li>
-                )
-            }
-        }
-
-
-        return(
-            <div className='card mt-2' key={this.props.id}>
-                <div className='card-body'>
-
-                    <div className='container'>
-                        <div className='row'>
-                            <div className='col-1 align-items-center  ' id='picture'>
-                                <img src={this.props.leaders[0]} alt='cat-pic' className='rounded'/>
-                            </div> 
-
-                            <div className='col-4' id='name'> 
-
-                                <h3>
-                                    {this.props.leaders[1]} 
-                                </h3>
-
-                                <h4>
-                                    {this.props.leaders[2]}
-                                </h4>
-                    
-                            </div>   
-
-                            <div className='col-6' id='credentials'>
-                                <div>Certifications</div> 
-                                <ul>
-
-                                    
-                                    {certArr}
-
-                                </ul>
-                                
-                            </div>
-
-                            <div className='col-1' id='x-icon' style={{display: (this.props.toggleDeleteButtons ? 'block' : 'none')}}>
-                                    <button onClick={this.deleteLeader} id={this.props.id} className='btn border'>
-                                        x
-                                    </button>
-                            </div>
-
-                        </div> 
-
-                    </div>
-
-                </div>
-                
+              <div
+                className="col-1"
+                id="x-icon"
+                style={{
+                  display: this.props.toggleDeleteButtons ? "block" : "none"
+                }}
+              >
+                <button
+                  onClick={this.deleteLeader}
+                  id={this.props.id}
+                  className="btn border"
+                >
+                  x
+                </button>
+              </div>
             </div>
-        )
-    }
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default LeaderCard
+export default LeaderCard;

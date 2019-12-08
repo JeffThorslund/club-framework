@@ -40,8 +40,7 @@ class Navbar extends React.Component{
                             </li>
                         </Link>
 
-                        
-                        
+                        {/*
                         <li className='nav-item mx-4'>
                             <a className="nav-link" href="www.google.com">FINANCE</a>
                         </li>
@@ -53,6 +52,10 @@ class Navbar extends React.Component{
                         <li className='nav-item mx-4'>
                             <a className="nav-link" href="www.google.com">SETTINGS</a>
                         </li>
+                        
+                        */}
+                        
+                        
                         
                     </ul>
 

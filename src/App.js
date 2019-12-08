@@ -27,3 +27,5 @@ function App() {
 }
 
 export default App;
+
+//add customized weekly email. 

@@ -3,7 +3,7 @@ import './Item.css'
 
 
 import { FaRegCheckCircle, FaRegCircle  } from 'react-icons/fa';
-import { AiOutlineUserAdd } from "react-icons/ai";
+
 
 class ItemForm extends React.Component {
     constructor(props) {
@@ -29,6 +29,7 @@ class ItemForm extends React.Component {
         this.setState({
             text: ''
         })
+
     }
 
 

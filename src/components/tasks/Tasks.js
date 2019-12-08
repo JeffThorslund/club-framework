@@ -1,44 +1,72 @@
-import React from 'react'
-import Navbar from '../Navbar'
+import React from "react";
+import Navbar from "../Navbar";
 
-import Pad from './Pad'
-import Note from './Note'
+import Note from "./Note";
 
+class Tasks extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      idArr: [0,1,2,3,4,5,6,7,8]
+    };
+  }
 
-class Tasks extends React.Component{
-    constructor(props){
-        super(props)
-        this.state ={
-            numNotes:2
-        }
-    }
+  //adds another note with a key that is one higher
 
-    render(){
+  IncreaseNoteCount = () => {
+    let idArr = [...this.state.idArr];
+    idArr.push(idArr[idArr.length - 1] + 1);
+    this.setState({
+      idArr: idArr
+    });
+  };
 
-        let noteArr = []
-        for (let i = 0; i<this.state.numNotes; i++){
-            noteArr.push(
-                <div className='col-6'>
-                    <Note />
-                </div>
-            )
-        }
+  deleteNote = index => {
+    let idArr = [...this.state.idArr];
+    console.log('index is ' + index)
 
-        return(
-            <div>
-                <Navbar />
-                <div className = 'container' style={{fontFamily: 'Alata'}}>
-                    <div className = 'row'>
-                        
-                    {noteArr}
+    let newIdArr = idArr.filter(item => {
+        console.log('current item is ' + item)
+        return item != index
+    });
 
-                    </div>
-                   
-                </div>
+    console.log('the new array is ' + newIdArr)
+
+    this.setState({
+      idArr: newIdArr
+    });
+  };
+
+  render() {
+    //iterates over the idArr to create a <Note /> for each.
+
+    let noteArr = [...this.state.idArr].map(number => {
+      return (
+        <div className="col-6">
+          <Note index={number} deleteNote={this.deleteNote} />
+        </div>
+      );
+    });
+
+    return (
+      <div>
+        <Navbar />
+        <div className="container" style={{ fontFamily: "Alata" }}>
+          <div className="row">
+            {noteArr}
+            <div className="col-6">
+              <button
+                className="btn btn-primary"
+                onClick={this.IncreaseNoteCount}
+              >
+                Add new
+              </button>
             </div>
-        )
-    }
-
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default Tasks
+export default Tasks;
