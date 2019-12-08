@@ -7,7 +7,7 @@ class Tasks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idArr: [0,1,2,3,4,5,6,7,8]
+      idArr: [3,4,5,6,7,8]
     };
   }
 
@@ -27,7 +27,7 @@ class Tasks extends React.Component {
 
     let newIdArr = idArr.filter(item => {
         console.log('current item is ' + item)
-        return item != index
+        return Number(item) !== Number(index)
     });
 
     console.log('the new array is ' + newIdArr)
@@ -40,10 +40,10 @@ class Tasks extends React.Component {
   render() {
     //iterates over the idArr to create a <Note /> for each.
 
-    let noteArr = [...this.state.idArr].map(number => {
+    let noteArr = [...this.state.idArr].map((element, index)=> {
       return (
-        <div className="col-6">
-          <Note index={number} deleteNote={this.deleteNote} />
+        <div className="col-6" key={element}>
+          <Note index={element}  deleteNote={this.deleteNote} />
         </div>
       );
     });

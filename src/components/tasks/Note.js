@@ -42,7 +42,7 @@ class Note extends React.Component {
     }
     return (
       <div className="card p-4" style={ this.state.visible ? { display:'block'} : {display : 'none'} }>
-        <NoteTitle /> {this.props.index}
+        <NoteTitle /> {this.props.index} {this.props.key}
 
         {itemList}
         <ItemForm handleSubmit={this.handleSubmit} />
