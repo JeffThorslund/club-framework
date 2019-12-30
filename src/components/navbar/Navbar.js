@@ -1,6 +1,7 @@
 import React from 'react'
-import logo from './Logo.png'
+import logo from '../Logo.png'
 import {Link} from 'react-router-dom'
+import './Navbar.css'
 
 class Navbar extends React.Component{
     
@@ -8,33 +9,34 @@ class Navbar extends React.Component{
     render(){
         return(
             <div>
-                <nav className="navbar navbar-expand navbar-dark bg-dark my-0 py-0">
-                    
+                <nav id='nav' className="navbar navbar-expand my-0 py-0">
                     <Link to='/'>
                         <div className="navbar-brand my-0 py-0" >
                             <img src={logo} width="80" height="50" alt=""/>    
                         </div>
                     </Link>
-                    <ul className='navbar-nav ml-auto my-0 py-0 '>
-                        <Link to='/home'>
-                            <li className='nav-item mx-4'>
+
+                    <ul className='navbar-nav ml-auto my-0 py-0'>
+
+                        <Link to='/home' id='noStyle'>
+                            <li  className='nav-item mx-4'>
                                 <div className="nav-link">HOME</div>
                             </li>
                         </Link>
 
-                        <Link to='/leaders'>
+                        <Link to='/leaders' id='noStyle'>
                             <li className='nav-item mx-4'>
                                 <div className="nav-link">LEADERS</div>
                             </li>
                         </Link>
 
-                        <Link to='/tasks'>
+                        <Link to='/tasks' id='noStyle'>
                             <li className='nav-item mx-4'>
                                 <div className="nav-link">TASKS</div>
                             </li>
                         </Link>
 
-                        <Link to='/calendar'>
+                        <Link to='/calendar' id='noStyle'>
                             <li className='nav-item mx-4'>
                                 <div className="nav-link">CALENDAR</div>
                             </li>

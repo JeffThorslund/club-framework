@@ -20,33 +20,77 @@ class LeaderCard extends React.Component {
   };
 
   render() {
+
+
+
+
     return (
-      <div className="card mt-2" id='leader-card-wrapper' key={this.props.id}>
-        <div className="card-body" >
+      <div className="card mt-2 w-50" id="LeaderCard" key={this.props.id}>
+        <div className="card-body">
           <div className="container">
             <div className="row">
-              <div className="col-3" id="name-position">
-                <h3>{this.props.leaders[0]}</h3> {/*Displays fullName*/}
-                <h4>{this.props.leaders[1]}</h4>
+
+              <div className="col" id="name">
+                <h3>{this.props.leaders.name}</h3>
               </div>
 
-              <div className="col-3" id="certifications">
+              <div className='w-100'></div>
+
+
+              <div className="col" id="position">
+                <h4>{this.props.leaders.position}</h4>
+              </div>
+
+              <div className='w-100'></div>
+
+              <div className="col" id="cell">
+                <div>Cell: {this.props.leaders.cell}</div>
+              </div>
+
+              <div className='w-100'></div>
+
+              <div className="col" id="email">
+                <div>Email: {this.props.leaders.email}</div>
+              </div>
+
+              <div className='w-100'></div>
+
+              <div className="col" id="facebook">
+                <div>Facebook: {this.props.leaders.facebook}</div>
+              </div>
+
+              <div className='w-100'></div>
+
+              <div className="col" id="instagram">
+                <div>Instagram: {this.props.leaders.instagram}</div>
+              </div>
+
+              <div className='w-100'></div>
+
+              <div className="col" id="linkedin">
+                <div>LinkedIn: {this.props.leaders.linkedin}</div>
+              </div>
+
+              <div className='w-100'></div>
+
+              <div className="col" id="certifications">
                 <div>Certifications</div>
-                <ul>{this.listBuilder(this.props.leaders[2])}</ul>
+                <ul>{this.listBuilder(this.props.leaders.certs)}</ul>
               </div>
 
-              <div className="col-3" id="roles">
+              <div className='w-100'></div>
+
+              <div className="col" id="roles">
                 <div>Roles and Responsibilites</div>
-                <ul>{this.listBuilder(this.props.leaders[3])}</ul>
+                <ul>{this.listBuilder(this.props.leaders.roles)}</ul>
               </div>
 
-              <div className="col-3" id="contact">
-                <div>Contact Info</div>
-                <ul>{this.listBuilder(this.props.leaders[4])}</ul>
-              </div>
+              <div className='w-100'></div>
+
+             
 
               <div
-                className="col-1"
+                className="col"
                 id="x-icon"
                 style={{
                   display: this.props.toggleDeleteButtons ? "block" : "none"

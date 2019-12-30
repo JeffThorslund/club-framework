@@ -6,18 +6,15 @@ import { FaRegCheckCircle, FaRegCircle } from "react-icons/fa";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { MdDateRange } from "react-icons/md";
 
-class ItemForm extends React.Component {
+class Item extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: false,
+      //checked: false,
       taskedLeaders: "",
       showPop: false
     };
   }
-
-  //includes checkbox, item name, leader assignment
-  //style={{textDecoration:this.state.checked?'text-decoration':'block'}}
 
   handleLeaderSelect = leader => {
     this.setState({
@@ -25,40 +22,34 @@ class ItemForm extends React.Component {
     });
   };
 
- 
-
   handleToggle = () => {
     this.setState(prevState => ({
       showPop: !prevState.showPop
     }));
   };
 
-  handleCheckedToggle = () => {
-    this.setState(prevState => ({
-      checked: !prevState.checked
-    }));
+  handleToggleCheckedStatus = (checked, index) => {//calls a function from Note.js that 
+    this.props.handleToggleCheckedStatus(checked, index)
   };
-
-  handleDelete = e => {};
 
   render() {
     return (
       <div>
         <div className="container border p-3">
           <div className="row">
-            <div className="col-1" onClick={this.handleCheckedToggle}>
+            <div className="col-1" onClick={()=>this.handleToggleCheckedStatus(this.props.checked, this.props.index)}>
               <FaRegCheckCircle
-                style={{ display: this.state.checked ? "block" : "none" }}
+                style={{ display: this.props.checked ? "block" : "none" }}
               />
               <FaRegCircle
-                style={{ display: !this.state.checked ? "block" : "none" }}
+                style={{ display: !this.props.checked ? "block" : "none" }}
               />
             </div>
 
             <div
               className="col-8"
               style={{
-                textDecoration: this.state.checked ? "line-through" : "none"
+                textDecoration: this.props.checked ? "line-through" : "none"
               }}
             >
               {this.props.content}
@@ -95,4 +86,4 @@ class ItemForm extends React.Component {
   }
 }
 
-export default ItemForm;
+export default Item;

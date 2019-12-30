@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "../Navbar";
+import Navbar from "../navbar/Navbar";
 import LeaderCard from "./LeaderCard";
-import FormCard from "./FormCard";
+import FormCard from "./form-components/FormCard";
 import PDFexport from "./PDFexport";
 
 import "./Leaders.css"; //style
@@ -11,15 +11,18 @@ class Leaders extends React.Component {
     super(props);
     this.state = {
       leaders: [
-        [
-          "fullName",
-          "position",
-          ["cert1", "cert2", "cert3", "cert4"],
-          ["role1", "role2", "role3", "role4"],
-          ["contact1", "contact2", "contact3"]
-        ]
+        {
+          name: "Jeff",
+          position: "Prez",
+          cell: "613-316-9222",
+          email: "jeffrey.thorslund@gmail.com",
+          facebook: "www.facebook.com/jeffthorslund",
+          instagram: "@eastern_wings",
+          linkedin: "NO",
+          certs: ["yes", "no"],
+          roles: ["maybe", "why"]
+        }
       ],
-
       formCardBool: false,
       deleteButtonBool: false
     };
@@ -42,20 +45,6 @@ class Leaders extends React.Component {
     });
   };
 
-  handleSubmit = (username, position, certs, roles, contact) => {
-    //set Leaders state based on FormCard info
-
-    let leaderInfo = [[username, position, certs, roles, contact]];
-
-    this.setState(prevState => {
-      return {
-        leaders: prevState.leaders.concat(leaderInfo)
-      };
-    });
-
-    this.toggleForm();
-  };
-
   deleteLeader = e => {
     let leaderInfo = [...this.state.leaders];
     leaderInfo.splice(e.target.id, 1);
@@ -65,32 +54,53 @@ class Leaders extends React.Component {
     });
   };
 
-  buildLeaderCards = () => {
-    //iterates state, creating a bunch of leader cards
-    let cardArray = [];
-    for (let i = 0; i < this.state.leaders.length; i++) {
-      //cycles through all leaders
-      cardArray.push(
-        <LeaderCard
-          leaders={this.state.leaders[i]}
-          deleteLeader={this.deleteLeader}
-          id={i}
-          toggleDeleteButtons={this.state.deleteButtonBool}
-        />
-      );
-    }
+  handleSubmit = info => {
+    //set Leaders state based on FormCard info
 
-    return cardArray;
+    let leaderInfo = {
+      key: 0,
+      name: info.name,
+      position: info.position,
+      cell: info.cell,
+      email: info.email,
+      facebook: info.facebook,
+      instagram: info.instagram,
+      linkedin: info.linkedin,
+      certs: info.certs,
+      roles: info.roles
+    };
+
+    this.setState({
+      leaders: [...this.state.leaders].concat(leaderInfo)
+    });
+    this.toggleForm();
   };
 
   render() {
+    
+      //iterates state, creating a bunch of leader cards
+      let cardArray = [];
+      for (let i = 0; i < this.state.leaders.length; i++) {
+        //cycles through all leaders
+        cardArray.push(
+          <LeaderCard
+            leaders={this.state.leaders[i]}
+            deleteLeader={this.deleteLeader}
+            id={i}
+            toggleDeleteButtons={this.state.deleteButtonBool}
+          />
+        );
+      }
+    
+
     return (
-      <div id="leader-wrapper">
+      <div id="Leader">
         <Navbar />
         <div className="container">
           <div className="row">
             <div className="col">
-              {this.buildLeaderCards()}
+              
+              {cardArray}
 
               <FormCard
                 toggle={this.state.formCardBool}
