@@ -36,9 +36,15 @@ class Navbar extends React.Component{
                             </li>
                         </Link>
 
-                        <Link to='/formik-leaders' id='noStyle'>
+                        <Link to='/leaders-formik' id='noStyle'>
                             <li className='nav-item mx-4'>
                                 <div className="nav-link">FORMIK LEADERS</div>
+                            </li>
+                        </Link>
+
+                        <Link to='/tasks-formik' id='noStyle'>
+                            <li className='nav-item mx-4'>
+                                <div className="nav-link">FORMIK TASKS</div>
                             </li>
                         </Link>
 
