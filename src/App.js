@@ -6,6 +6,7 @@ import Home from './components/home/Home';
 import Leaders from './components/leaders/Leaders';
 import Calendar from './components/calendar/Calendar';
 import Tasks from './components/tasks/Tasks';
+import formikLeaders from './components/leaders-formik/Leaders'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path='/leaders' component={Leaders} />
           <Route path='/calendar' component={Calendar} />
           <Route path='/tasks' component={Tasks} />
+          <Route path='/formik-leaders' component={formikLeaders} />
         </Switch>
 
         
