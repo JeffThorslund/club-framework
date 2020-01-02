@@ -8,27 +8,100 @@ export default class FormCard extends Component {
       <div>
         {/*Formik component takes initialValues*/}
         <Formik
-          initialValues={{ }}
-          onSubmit={data => {
-            alert(data);
+          initialValues={{
+            fullName: "",
+            position: "",
+            cell: "",
+            email: "",
+            facebook: "",
+            instagram: "",
+            linkedin: ""
+          }}
+          onSubmit={(values, { resetForm }) => {
+            this.props.handleSubmit(values);
+            resetForm({
+              values: {
+                fullName: "",
+                position: "",
+                cell: "",
+                email: "",
+                facebook: "",
+                instagram: "",
+                linkedin: ""
+              }
+            });
           }}
         >
-          {({ values, handleChange, handleBlur, handleSubmit }) => (
+          {({ values, resetForm, handleChange, handleBlur, handleSubmit }) => (
             <Form>
-              <div><Field placeholder='Name' name="fullName" type="input" as={TextField} /></div>
-              <div><Field placeholder='Position'name="position" type="input" as={TextField} /></div>
-              <div><Field placeholder='Cell Phone' name="cellPhone" type="input" as={TextField} /></div>
-              <div><Field placeholder='Email'name="email" type="input" as={TextField} /></div>
-              <div><Field placeholder='Facebook'name="facebook" type="input" as={TextField} /></div>
-              <div><Field placeholder='Instagram'name="instagram" type="input" as={TextField} /></div>
-              <div><Field placeholder='LinkedIn'name="linkedin" type="input" as={TextField} /></div>
+              <div className="card mt-2">
+                <div className="card-body">
+                  <div className="container">
+                    <div className="form-row">
+                      <div className="form-group col">
+                        <label>Name</label>
+                        <div>
+                          <Field name="fullName" type="input" as={TextField} />
+                        </div>
+                      </div>
 
-              <div>
-                <button type="submit" class="btn btn-primary">
-                  Submit
-                </button>
+                      <div className="form-group col">
+                        <label>Position</label>
+                        <div>
+                          <Field name="position" type="input" as={TextField} />
+                        </div>
+                      </div>
+
+                      <div className="form-group col">
+                        <label>Cell Phone</label>
+                        <div>
+                          <Field name="cell" type="input" as={TextField} />
+                        </div>
+                      </div>
+
+                      <div className="form-group col">
+                        <label>Email</label>
+                        <div>
+                          <Field name="email" type="input" as={TextField} />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="form-row">
+                      <div className="form-group col">
+                        <label>Facebook</label>
+                        <div>
+                          <Field name="facebook" type="input" as={TextField} />
+                        </div>
+                      </div>
+
+                      <div className="form-group col">
+                        <label>Instagram</label>
+                        <div>
+                          <Field name="instagram" type="input" as={TextField} />
+                        </div>
+                      </div>
+
+                      <div className="form-group col">
+                        <label>LinkedIn</label>
+                        <div>
+                          <Field name="linkedin" type="input" as={TextField} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <button
+                      type="button"
+                      onClick={handleSubmit}
+                      class="btn btn-primary"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
               </div>
-
               <pre>{JSON.stringify(values, null, 2)}</pre>
             </Form>
           )}

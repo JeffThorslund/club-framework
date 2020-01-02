@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../navbar/Navbar";
-import FormCard from "./FormCard"
+import FormCard from "./FormCard";
+import LeaderCard from "./LeaderCard";
 
 import "./Leaders.css";
 
@@ -9,6 +10,15 @@ class Leaders extends React.Component {
     super(props);
     this.state = {
       leaders: [
+        {
+          name: "Jeff",
+          position: "Prez",
+          cell: "613-316-9222",
+          email: "jeffrey.thorslund@gmail.com",
+          facebook: "www.facebook.com/jeffthorslund",
+          instagram: "@eastern_wings",
+          linkedin: "NO"
+        },
         {
           name: "Jeff",
           position: "Prez",
@@ -27,7 +37,6 @@ class Leaders extends React.Component {
   //toggles Form Card
 
   toggleForm = () => {
-    
     this.setState(prevState => {
       return {
         formCardBool: !prevState.formCardBool
@@ -59,10 +68,9 @@ class Leaders extends React.Component {
   //set Leaders state based on FormCard info
 
   handleSubmit = info => {
-    
     let leaderInfo = {
       key: 0,
-      name: info.name,
+      name: info.fullName,
       position: info.position,
       cell: info.cell,
       email: info.email,
@@ -79,56 +87,63 @@ class Leaders extends React.Component {
 
   render() {
     //iterates state, creating a bunch of leader cards
-    /*let cardArray = [];
+    let cardArray = [];
     for (let i = 0; i < this.state.leaders.length; i++) {
       //cycles through all leaders
       cardArray.push(
-        <LeaderCard
-          leaders={this.state.leaders[i]}
-          deleteLeader={this.deleteLeader}
-          id={i}
-          toggleDeleteButtons={this.state.deleteButtonBool}
-        />
+        <div className="col my-3">
+          <LeaderCard
+            leaders={this.state.leaders[i]}
+            deleteLeader={this.deleteLeader}
+            id={i}
+            toggleDeleteButtons={this.state.deleteButtonBool}
+          />
+        </div>
       );
-    }*/
+    }
 
     return (
       <div id="Leader">
         <Navbar />
         <div className="container">
           <div className="row">
-            <div className="col">
-              {/*{cardArray}*/}
+            {cardArray}
+            </div>
 
-              <FormCard
-                toggle={this.state.formCardBool}
-                handleClose={this.toggleForm}
-                handleSubmit={this.handleSubmit}
-              />
-
-              <div className="row my-2">
-                <div className="col">
-                  
+            <div className="row">
+              <div className="col-12">
+                <div
+                  style={{
+                    display: !this.state.formCardBool ? "none" : "block"
+                  }}
+                >
+                  <FormCard handleSubmit={this.handleSubmit} />
+                </div>
+              </div>
+              </div>
+              <div className="row mt-2">
+                <div className="col-2">
                   <button
                     type="button"
-                    className="btn btn-light mr-3 border"
+                    className="btn btn-light mr-2 border"
                     onClick={this.toggleForm}
                   >
                     Add a Leader
                   </button>
-
+                  </div>
+                  
+                  <div className="col-2">
                   <button
                     type="button"
-                    className="btn btn-light mr-3 border"
+                    className="btn btn-light mr-2 border"
                     onClick={this.toggleDeleteButtons}
                   >
-                    Delete a Leader
+                    Delete Leader
                   </button>
-                  
-                </div>
+                  </div>
               </div>
-            </div>
-          </div>
+            
+          
         </div>
       </div>
     );
