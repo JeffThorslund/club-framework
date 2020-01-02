@@ -24,12 +24,6 @@ class Navbar extends React.Component{
                             </li>
                         </Link>
 
-                        <Link to='/leaders' id='noStyle'>
-                            <li className='nav-item mx-4'>
-                                <div className="nav-link">LEADERS</div>
-                            </li>
-                        </Link>
-
                         <Link to='/tasks' id='noStyle'>
                             <li className='nav-item mx-4'>
                                 <div className="nav-link">TASKS</div>
